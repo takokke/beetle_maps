@@ -1,0 +1,20 @@
+
+<div id="map"></div>
+
+
+<h1>画像投稿フォーム</h1>
+<%= form_with model: @post do |f| %>
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+  <h4>生き物名</h4>
+  <%= f.text_field :insect_name %>
+  <h4>説明</h4>
+  <%= f.text_area :caption %>
+  <h4>緯度</h4>
+  <%= f.number_field :latitude, id:"ido", step: "0.00000000000000001" %>
+  <h4>経度</h4>
+  <%= f.number_field :longitude, id:'keido', step: "0.00000000000000001" %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
