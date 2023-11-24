@@ -21,6 +21,32 @@ async function initMap() {
     $("#ido").val(e.latLng.lat());
     $("#keido").val(e.latLng.lng());
   });
+  
+  // 地図の検索
+  $('#search').on('click', function() {
+    let place = $("#keyword").val();
+    let geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+    geocoder.geocode({
+      address: place
+    }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        let bounds = new google.maps.LatLngBounds();
+        for (let i in results) {
+          if (results[0].geometry) {
+            // 緯度経度を取得
+            let latlng = results[0].geometry.location;
+            // mapのcenterに取得した緯度経度をセット
+            map.setCenter(latlng)
+          }
+        }
+      } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+        alert("見つかりません");
+      } else {
+        console.log(status);
+        alert("エラー発生");
+      }
+    });
+  });
 }
 
 initMap()
