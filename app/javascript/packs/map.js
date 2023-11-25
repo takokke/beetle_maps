@@ -6,6 +6,9 @@
 // ライブラリの読み込み
 let map;
 
+// マーカーを初期化
+let markers = [];
+
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
@@ -13,13 +16,15 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.6648863, lng: 133.916252 }, 
     zoom: 15,
-    mapTypeControl: false
+    mapTypeControl: true
   });
   
   // クリックイベントを追加、緯度経度
   map.addListener('click', function(e) {
     $("#ido").val(e.latLng.lat());
     $("#keido").val(e.latLng.lng());
+
+    getClickLatLng(e.latLng, map);
   });
   
   // 地図の検索
@@ -47,6 +52,39 @@ async function initMap() {
       }
     });
   });
+  
+  function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+  
+  function hideMarkers() {
+    setMapOnAll(null);
+  }
+  
+  function deleteMarkers() {
+    hideMarkers();
+    markers = [];
+  }
+  
+  function getClickLatLng(lat_lng, map) {
+    
+    
+    
+    // マーカーを削除
+    deleteMarkers();
+    // マーカーを設置
+    var marker = new google.maps.Marker({
+      position: lat_lng,
+      map: map
+    });
+    markers.push(marker);
+    // 座標の中心をずらす
+    // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
+    map.panTo(lat_lng);
+    console.log(marker)
+  }
 }
 
 initMap()
