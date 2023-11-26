@@ -6,9 +6,6 @@
 // ライブラリの読み込み
 let map;
 
-// マーカーを初期化
-let markers = [];
-
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
@@ -18,19 +15,22 @@ async function initMap() {
     zoom: 15,
     mapTypeControl: true
   });
+  // geocoderのコンストラクタ
+  let geocoder = new google.maps.Geocoder();
+  // マーカーの初期化
+  let marker;
   
-  // クリックイベントを追加、緯度経度
+  // 地図上でクリックしたときのイベント
   map.addListener('click', function(e) {
-    $("#ido").val(e.latLng.lat());
-    $("#keido").val(e.latLng.lng());
-
     getClickLatLng(e.latLng, map);
+    getClickAddress(e.latLng);
+    toggleMarker(e.latLng, map);
   });
   
   // 地図の検索
   $('#search').on('click', function() {
     let place = $("#keyword").val();
-    let geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+    // let geocoder = new google.maps.Geocoder();
     geocoder.geocode({
       address: place
     }, function(results, status) {
@@ -53,38 +53,56 @@ async function initMap() {
     });
   });
   
-  function setMapOnAll(map) {
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-    }
-  }
   
-  function hideMarkers() {
-    setMapOnAll(null);
-  }
-  
-  function deleteMarkers() {
-    hideMarkers();
-    markers = [];
-  }
-  
+  /**********************************************************************
+  関数の定義
+  ********************************************************************/
   function getClickLatLng(lat_lng, map) {
+    $("#ido").val(lat_lng.lat());
+    $("#keido").val(lat_lng.lng());
+  }
+  
+  // リバースジオコーディングで住所を取得
+  function getClickAddress(lat_lng) {
+    let latlng = {
+      lat: parseFloat(lat_lng.lat()),
+      lng: parseFloat(lat_lng.lng()),
+    };
+    geocoder.geocode({ location: latlng }).then((response) => {
+      if (response.results[0]) {
+        let addressStr = response.results[0].formatted_address;
+        addressStr = addressStr.substr(addressStr.indexOf('日本') + 3)
+        if ( addressStr.match(/〒/)) {
+          let postal = addressStr.substr(addressStr.indexOf("〒"), 9);
+          console.log(postal);
+          addressStr = addressStr.replace(postal + " ", "");
+        };
+        console.log(addressStr)
+      } else {
+        window.alert("No results found");
+      }
+    }).catch((e) => window.alert("Geocoder failed due to: " + e)); 
+  }
+  
+  function toggleMarker(lat_lng, map) {
     
+    // もし、直前に追加したマーカーが残っているなら、マップから隠す
+    if (marker) {
+      marker.setMap(null);
+    }
+    // マーカーを削除する
+    marker = null;
     
-    
-    // マーカーを削除
-    deleteMarkers();
     // マーカーを設置
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
       position: lat_lng,
       map: map
     });
-    markers.push(marker);
+
     // 座標の中心をずらす
     // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
     map.panTo(lat_lng);
-    console.log(marker)
   }
 }
 
-initMap()
+initMap();
