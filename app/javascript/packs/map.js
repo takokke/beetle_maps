@@ -20,12 +20,6 @@ async function initMap() {
   // マーカーの初期化
   let marker;
   
-  // 地図上でクリックしたときのイベント
-  map.addListener('click', function(e) {
-    getClickLatLng(e.latLng, map);
-    getClickAddress(e.latLng);
-    toggleMarker(e.latLng, map);
-  });
   
   // 地図の検索
   $('#search').on('click', function() {
@@ -52,7 +46,60 @@ async function initMap() {
       }
     });
   });
+  /*******************************************************
+   投稿画面
+   ******************************************************/
+   
+   if (location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/posts/new"
+       || location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/posts" ) {
+      // 地図上でクリックしたときのイベント
+      map.addListener('click', function(e) {
+        getClickLatLng(e.latLng, map);
+        getClickAddress(e.latLng);
+        toggleMarker(e.latLng, map);
+      });
+   }
   
+  
+  /********************************************************
+   地図一覧画面
+   ********************************************************/
+   
+  if (location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/map") {
+    const response = await fetch("/posts.json").then((res) => res.json()).catch(error => console.error(error));
+    const items = response.data.items;
+    items.forEach((item) => {
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(item.latitude, item.longitude),
+        map,
+        title: item.creature_name,
+      });
+      const information = new google.maps.InfoWindow({
+        content: `
+          <div class="information container p-0">
+            <div class="mb-3 d-flex align-items-center">
+              <img class="rounded-circle mr-2" src="${item.user.image}" width="40" height="40"><p class="lead m-0 font-weight-bold">${item.user.name}</p>
+            </div>
+            <div class="mb-3">
+              <img class="thumbnail" src="${item.image}" width="220" loading="lazy">
+            </div>
+            <div>
+              <h1 class="h4 font-weight-bold">${item.creature_name}</h1>
+              <p class="text-muted">${item.address}</p>
+              <p class="lead" style="width: 220px;">${item.caption}</p>
+            </div>
+          </div>
+        `,
+        ariaLabel: item.creature_name,
+      });
+      marker.addListener("click", () => {
+        information.open({
+          anchor: marker,
+          map,
+        })
+      })
+    });
+  }
   
   /**********************************************************************
   関数の定義
@@ -70,14 +117,13 @@ async function initMap() {
     };
     geocoder.geocode({ location: latlng }).then((response) => {
       if (response.results[0]) {
-        let addressStr = response.results[0].formatted_address;
-        addressStr = addressStr.substr(addressStr.indexOf('日本') + 3)
+        let longAddressStr = response.results[0].formatted_address;
+        let addressStr = longAddressStr.substr(longAddressStr.indexOf('日本') + 3)
         if ( addressStr.match(/〒/)) {
-          let postal = addressStr.substr(addressStr.indexOf("〒"), 9);
-          console.log(postal);
-          addressStr = addressStr.replace(postal + " ", "");
-        };
-        console.log(addressStr)
+          let postCode = addressStr.substr(addressStr.indexOf("〒"), 9);
+          addressStr = addressStr.replace(postCode + " ", "");
+        }
+        $("#address").val(addressStr);
       } else {
         window.alert("No results found");
       }
@@ -104,5 +150,6 @@ async function initMap() {
     map.panTo(lat_lng);
   }
 }
+
 
 initMap();

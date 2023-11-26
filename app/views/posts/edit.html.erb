@@ -16,16 +16,12 @@
   <%= f.text_field :creature_name %>
   <h4>説明</h4>
   <%= f.text_area :caption %>
-  <h4>緯度</h4>
-  <%= f.number_field :latitude, id:"ido", step: "0.00000000000000001" %>
-  <h4>経度</h4>
-  <%= f.number_field :longitude, id:'keido', step: "0.00000000000000001" %>
   <%= f.submit '投稿' %>
 <% end %>
 
-<div>地図を検索 （例：広島県福山市）</div>
-<input type="text" id="keyword"><button id="search">検索実行</button>
-<div id="target"></div>
-<div id="map"></div>
+<!--<div>地図を検索 （例：広島県福山市）</div>-->
+<!--<input type="text" id="keyword"><button id="search">検索実行</button>-->
+<!--<div id="target"></div>-->
+<!--<div id="map"></div>-->
 
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+<!--<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>-->
