@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <script src="https://kit.fontawesome.com/1dbb4bab62.js" crossorigin="anonymous"></script>
+    
+    <!-- cssはpackで管理するよりもassetsで管理する方が読み込みが速かった -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -33,7 +37,7 @@
   </header>
     <%= yield %>
   <footer>
-    <p>フッター</p>
+    <p class="footer-copyright">Copyright © takokke. All Rights Reserved.</p>
   </footer>
   </body>
 </html>
