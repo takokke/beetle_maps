@@ -51,8 +51,8 @@ async function initMap() {
    投稿画面
    ******************************************************/
    
-   if (location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/posts/new"
-       || location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/posts" ) {
+   if (location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts/new"
+       || location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts" ) {
       // 地図上でクリックしたときのイベント
       map.addListener('click', function(e) {
         getClickLatLng(e.latLng, map);
@@ -66,7 +66,7 @@ async function initMap() {
    地図一覧画面
    ********************************************************/
    
-  if (location.href == "https://f12f3083e91c4e589984f4ce313da08b.vfs.cloud9.ap-northeast-1.amazonaws.com/map") {
+  if (location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/map") {
     const response = await fetch("/posts.json").then((res) => res.json()).catch(error => console.error(error));
     const items = response.data.items;
     items.forEach((item) => {
