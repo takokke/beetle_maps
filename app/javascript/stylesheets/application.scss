@@ -1,24 +1,3 @@
-// @use '~bootstrap/scss/bootstrap';
+@use '~bootstrap/scss/bootstrap';
 @import 'breakpoints';
 @import 'map';
-
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  line-height: 1.5;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-
-a {
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}

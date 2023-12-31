@@ -9,35 +9,52 @@
     <script src="https://kit.fontawesome.com/1dbb4bab62.js" crossorigin="anonymous"></script>
     
     <!-- cssはpackで管理するよりもassetsで管理する方が読み込みが速かった -->
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to '投稿フォーム', new_post_path, "data-turbolinks": false%>
-      </li>
-      <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>    
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-  </header>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">生き物マップ</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to '投稿一覧', posts_path, class: 'nav-link text-dark'%>
+              </li>
+              <li class="nav-item">
+                <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark',"data-turbolinks": false%>
+              </li>
+              <li class="nav-item">
+                <%= link_to '地図で見る', map_path, class: 'nav-link text-dark'%>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark'%>    
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
-  <footer>
-    <p class="footer-copyright">Copyright © takokke. All Rights Reserved.</p>
-  </footer>
+    <footer>
+      <p class="footer-copyright">Copyright © takokke. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
