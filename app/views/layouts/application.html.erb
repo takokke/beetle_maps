@@ -31,7 +31,7 @@
                 <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark',"data-turbolinks": false%>
               </li>
               <li class="nav-item">
-                <%= link_to '地図で見る', map_path, class: 'nav-link text-dark'%>
+                <%= link_to '地図で見る', map_path, class: 'nav-link text-dark', "data-turbolinks": false%>
               </li>
               <li class="nav-item">
                 <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark'%>    
@@ -52,9 +52,13 @@
         </div>
       </nav>
     </header>
+    <main class="mb-auto">
     <%= yield %>
-    <footer>
-      <p class="footer-copyright">Copyright © takokke. All Rights Reserved.</p>
+    </main>
+    <footer class="bg-dark pt-5 pb-3">
+      <div class="container text-center">
+        <p class="text-white">Copyright © takokke. All Rights Reserved.</p>
+      </div>
     </footer>
   </body>
 </html>
