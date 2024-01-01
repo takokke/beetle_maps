@@ -152,5 +152,4 @@ async function initMap() {
   }
 }
 
-
 initMap();

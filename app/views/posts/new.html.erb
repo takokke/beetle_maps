@@ -1,38 +1,48 @@
 <div class="container mt-4 mb-4">
-  <h1>画像投稿フォーム</h1>
-  <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <div class="row">
-    <div class="col-md-4">
-     <%= form_with model: @post do |f| %>
-        <h4>画像</h4>
-        <%= f.file_field :image, accept: "image/*" %>
-        <h4>生き物の名前</h4>
-        <%= f.text_field :creature_name %>
-        <h4>説明</h4>
-        <%= f.text_area :caption %>
-        <h4>場所</h4>
-        <%= f.text_field :address, id:"address" %>
-        <h4>緯度</h4>
-        <%= f.number_field :latitude, id:"ido", step: "0.00000000000000001" %>
-        <h4>経度</h4>
-        <%= f.number_field :longitude, id:'keido', step: "0.00000000000000001" %>
-        <%= f.submit '投稿' %>
-      <% end %>
+  <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
+  <div class="form-body p-4">
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <div class="row">
+      <div class="col-md-6">
+       <%= form_with model: @post do |f| %>
+          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
+            </div>
+            <%= f.text_field :creature_name, class:'form-control', placeholder: "生き物の名前" %>
+          </div>
+          <%= f.text_area :caption, rows: "3", class:'form-control', placeholder: "コメントここに" %>
+          <hr>
+          <h4>場所</h4>
+          <%= f.text_field :address, id:"address", class:'form-control' %>
+          <div class="row">
+            <div class="col-6">
+              <h4>緯度</h4>
+              <%= f.number_field :latitude, id:"ido", class:'form-control', step: "0.00000000000000001" %>
+            </div>
+            <div class="col-6">
+              <h4>経度</h4>
+              <%= f.number_field :longitude, id:'keido', class:'form-control', step: "0.00000000000000001" %>
+            </div>
+          </div>
+          <%= f.submit '投稿', class:"btn btn-lg btn-block btn-success mt-4" %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        場所を検索
+        <input type="text" id="keyword"><button id="search">検索</button>
+        <div id="target"></div>
+        <div id="map"></div>
+      </div>
     </div>
-    <div class="col-md-8">
-      場所を検索
-      <input type="text" id="keyword"><button id="search">検索</button>
-      <div id="target"></div>
-      <div id="map"></div>      
-    </div>
- 
   </div>
 </div>
 

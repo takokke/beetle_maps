@@ -1,27 +1,31 @@
-<h1>投稿を編集する</h1>
-
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="container mt-4 mb-4">
+  <h5 class="text-dark bg-light p-4 mb-0">投稿を編集</h5>
+  <div class="form-body p-4">
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+    <div class="row">
+      <div class="col-md-5 offset-1 ">
+        <%= image_tag @post.get_image(400, 400) %>
+      </div>
+      <div class="col-md-6">
+        <%= form_with model: @post do |f| %>
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
+            </div>
+            <%= f.text_field :creature_name, class:'form-control', placeholder: "生き物の名前" %>
+          </div>
+          <%= f.text_area :caption, rows: "3", class:'form-control', placeholder: "コメントここに" %>
+          <%= f.submit '更新', class:"btn btn-lg btn-block btn-success mt-4" %>
+        <% end %>
+      </div>
 
-<%= form_with model: @post do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>生き物の名前</h4>
-  <%= f.text_field :creature_name %>
-  <h4>説明</h4>
-  <%= f.text_area :caption %>
-  <%= f.submit '投稿' %>
-<% end %>
-
-<!--<div>地図を検索 （例：広島県福山市）</div>-->
-<!--<input type="text" id="keyword"><button id="search">検索実行</button>-->
-<!--<div id="target"></div>-->
-<!--<div id="map"></div>-->
-
-<!--<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>-->
+    </div>
+  </div>
+</div>
