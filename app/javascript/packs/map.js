@@ -14,7 +14,7 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.6648863, lng: 133.916252 }, 
     zoom: 15,
-    mapTypeControl: true
+    mapTypeControl: false
   });
   // geocoderのコンストラクタ
   let geocoder = new google.maps.Geocoder();
@@ -125,6 +125,7 @@ async function initMap() {
           let postCode = addressStr.substr(addressStr.indexOf("〒"), 9);
           addressStr = addressStr.replace(postCode + " ", "");
         }
+        // 市区町村まで文字列を取り出す
         if ( addressStr.indexOf('市') != -1 ) {
           addressStr = addressStr.substr(0, addressStr.indexOf('市') + 1);
         } else if ( addressStr.indexOf('区') != -1 ) {
@@ -134,7 +135,6 @@ async function initMap() {
         } else if ( addressStr.indexOf('村') != -1 ) {
           addressStr = addressStr.substr(0, addressStr.indexOf('村') + 1);
         }
-        
         $("#address").val(addressStr);
       } else {
         window.alert("No results found");

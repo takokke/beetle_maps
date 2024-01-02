@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.2.1/exif.min.js"></script>
 <div class="container mt-4 mb-4">
   <h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>
   <div class="form-body p-4">
@@ -10,9 +12,14 @@
       </ul>
     <% end %>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-5">
        <%= form_with model: @post do |f| %>
+          <!-- ファイルのアップロードフォーム  -->
           <%= f.file_field :image, id: "file-input", accept: "image/*", class: "w-100" %>
+          <div class="input-group mt-4">
+            <%= f.date_field :discover_date, class:"form-control", id:"discover-date" %>
+          </div>
+
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
@@ -21,15 +28,23 @@
           </div>
           <%= f.text_area :caption, rows: "3", class:'form-control', placeholder: "コメントここに" %>
           <hr>
-          <h4>場所</h4>
-          <%= f.text_field :address, id:"address", class:'form-control' %>
+
+          <h6 class="text-dark bg-light p-2 mb-1">見つけた場所を地図上でクリックしよう</h6>
+
+          <div class="input-group mb-3 mt-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+            </div>
+            <%= f.text_field :address, id:"address", class:'form-control', placeholder: "地図上をクリックすると自動入力されます" %>
+          </div>
+
           <div class="row">
             <div class="col-6">
-              <h4>緯度</h4>
+              <%= f.label :latitude, '緯度' %>
               <%= f.number_field :latitude, id:"ido", class:'form-control', step: "0.00000000000000001" %>
             </div>
             <div class="col-6">
-              <h4>経度</h4>
+              <%= f.label :longitude, '経度' %>
               <%= f.number_field :longitude, id:'keido', class:'form-control', step: "0.00000000000000001" %>
             </div>
           </div>
@@ -37,9 +52,19 @@
         <% end %>
       </div>
       <div class="col-md-6">
-        場所を検索
-        <input type="text" id="keyword"><button id="search">検索</button>
-        <div id="target"></div>
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="keyword" placeholder="地図を検索">
+              <button id="search" class="btn btn-outline-success" type="button" >
+                <i class="fas fa-search"></i>検索
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!--<div id="target"></div>-->
         <div id="map"></div>
       </div>
     </div>

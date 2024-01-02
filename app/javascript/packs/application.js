@@ -14,7 +14,9 @@ import "bootstrap";
 import "../stylesheets/application";
 
 import "./map";
+import "./exif";
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
