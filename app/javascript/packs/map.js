@@ -21,7 +21,6 @@ async function initMap() {
   // マーカーの初期化
   let marker;
   
-  
   // 地図の検索
   $('#search').on('click', function() {
     let place = $("#keyword").val();
@@ -119,11 +118,23 @@ async function initMap() {
     geocoder.geocode({ location: latlng }).then((response) => {
       if (response.results[0]) {
         let longAddressStr = response.results[0].formatted_address;
+        // 住所から"日本"を取り除く
         let addressStr = longAddressStr.substr(longAddressStr.indexOf('日本') + 3)
+        // 郵便番号が含まれている場合取り除く
         if ( addressStr.match(/〒/)) {
           let postCode = addressStr.substr(addressStr.indexOf("〒"), 9);
           addressStr = addressStr.replace(postCode + " ", "");
         }
+        if ( addressStr.indexOf('市') != -1 ) {
+          addressStr = addressStr.substr(0, addressStr.indexOf('市') + 1);
+        } else if ( addressStr.indexOf('区') != -1 ) {
+          addressStr = addressStr.substr(0, addressStr.indexOf('区') + 1);
+        } else if ( addressStr.indexOf('町') != -1 ) {
+          addressStr = addressStr.substr(0, addressStr.indexOf('町') + 1);
+        } else if ( addressStr.indexOf('村') != -1 ) {
+          addressStr = addressStr.substr(0, addressStr.indexOf('村') + 1);
+        }
+        
         $("#address").val(addressStr);
       } else {
         window.alert("No results found");

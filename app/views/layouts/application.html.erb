@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <script src="https://kit.fontawesome.com/1dbb4bab62.js" crossorigin="anonymous"></script>
-    
+
     <!-- cssはpackで管理するよりもassetsで管理する方が読み込みが速かった -->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body class="d-flex flex-column vh-100">
@@ -34,7 +35,7 @@
                 <%= link_to '地図で見る', map_path, class: 'nav-link text-dark', "data-turbolinks": false%>
               </li>
               <li class="nav-item">
-                <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark'%>    
+                <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark'%>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
@@ -61,5 +62,6 @@
         <p class="text-white">Copyright © takokke. All Rights Reserved.</p>
       </div>
     </footer>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.2.1/exif.min.js"></script>-->
   </body>
 </html>

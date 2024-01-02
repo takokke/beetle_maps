@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-6">
        <%= form_with model: @post do |f| %>
-          <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+          <%= f.file_field :image, id: "file-input", accept: "image/*", class: "w-100" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
