@@ -10,7 +10,6 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
-  // 地図の中心と倍率は公式から変更しています。
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.6648863, lng: 133.916252 }, 
     zoom: 15,
@@ -35,7 +34,8 @@ async function initMap() {
             // 緯度経度を取得
             let latlng = results[0].geometry.location;
             // mapのcenterに取得した緯度経度をセット
-            map.setCenter(latlng)
+            map.setCenter(latlng);
+            map.setZoom(15);
           }
         }
       } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
