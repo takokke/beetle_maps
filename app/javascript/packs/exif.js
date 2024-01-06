@@ -8,13 +8,13 @@ $(function() {
         EXIF.getData(file, function() {
             // EXIF.getTag(this, "[exifのタグ名]")で、値を取得
             var strDateTime = EXIF.getTag(this, "DateTimeOriginal");
-            
+
             // 文字列中の:を-に置き換え
             // yyyy-MM-ddの形式にする
             strDateTime = strDateTime.replace(":", "-");
             strDateTime = strDateTime.replace(":", "-");
             var strDate = strDateTime.substr(0, strDateTime.indexOf(" "))
-            
+
             $("#discover-date").val(strDate);
         });
     });

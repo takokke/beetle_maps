@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:creature_name, :caption, :image, :address, :latitude, :longitude)
+    params.require(:post).permit(:creature_name, :caption, :image, :address, :latitude, :longitude, :discover_date)
   end
   
   def is_matching_author
