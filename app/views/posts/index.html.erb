@@ -1,1 +1,21 @@
-<%= render 'list', posts: @posts %>
+<div class="container py-3">
+  <h4 style="color: #806E40; border-bottom: 2px solid #806E40;" >みんなの生き物</h4>
+  <div class="d-flex justify-content-center py-5" style="background-color: #F6F4EA;">
+    <div class="card-group">
+    <% @posts.each do |post| %>
+      <div>
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.get_image(240,240) %>
+          <h5><%= post.creature_name %></h5>
+        <% end %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+  <div>
+    <%= paginate @posts %>
+  </div>
+</div>
+
+
