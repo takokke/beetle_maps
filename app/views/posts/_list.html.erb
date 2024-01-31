@@ -5,6 +5,7 @@
   <% end %>
   <p>投稿ユーザー画像：<%= image_tag post.user.get_profile_image(100,100) %></p>
   <p>生き物の名前：<%= post.creature_name %></p>
+  <p>見つけた日付：<%= post.discover_date %></p>
   <p>場所：<%= post.address %></p>
   <p>説明：<%= post.caption %></p>
   <p>ユーザーネーム：<%= post.user.name %></p>

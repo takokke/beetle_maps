@@ -13,7 +13,7 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.6648863, lng: 133.916252 }, 
     zoom: 15,
-    mapTypeControl: false
+    mapTypeControl: true
   });
   // geocoderのコンストラクタ
   let geocoder = new google.maps.Geocoder();
