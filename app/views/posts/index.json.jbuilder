@@ -6,12 +6,12 @@ json.data do
         json.name post.user.name
         json.image url_for(post.user.profile_image)
       end
-      json.image url_for(post.image)
+      json.image url_for(post.get_image(200, 200))
       json.creature_name post.creature_name
       json.caption post.caption
       json.address post.address
       json.latitude post.latitude
       json.longitude post.longitude
-    end  
+    end
   end
 end
