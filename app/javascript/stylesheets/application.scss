@@ -3,3 +3,26 @@
 @import 'map';
 
 
+$main-color: #806E40;
+$text-color: #534741;
+
+body {
+  color: $text-color;
+}
+
+input[type="submit"] {
+  background-color: $main-color;
+  color: #fff;
+}
+
+a {
+  color: $text-color;
+}
+
+i {
+  color: #806E40;
+}
+
+footer {
+  background-color: #372F2B;
+}
