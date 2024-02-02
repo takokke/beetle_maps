@@ -10,7 +10,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-user"></i></span>
           </div>
-          <%= f.text_field :name, autofocus: true, placeholder: "名前", autocomplete: "name", class:"form-control" %>
+          <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名", autocomplete: "name", class:"form-control" %>
         </div>
 
         <!--パスワード入力欄-->
@@ -27,7 +27,7 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-        
+
         <!--ログインボタン-->
         <div class="actions">
           <%= f.submit "ログイン", class:'btn'%>

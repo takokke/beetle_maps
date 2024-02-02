@@ -41,11 +41,11 @@
           <div class="row">
             <div class="col-6">
               <%= f.label :latitude, '緯度' %>
-              <%= f.number_field :latitude, id:"ido", class:'form-control', step: "0.00000000000000001" %>
+              <%= f.number_field :latitude, id:"lat-input", class:'form-control', step: "0.00000000000000001" %>
             </div>
             <div class="col-6">
               <%= f.label :longitude, '経度' %>
-              <%= f.number_field :longitude, id:'keido', class:'form-control', step: "0.00000000000000001" %>
+              <%= f.number_field :longitude, id:'lng-input', class:'form-control', step: "0.00000000000000001" %>
             </div>
           </div>
           <%= f.submit '投稿', class:"btn btn-lg btn-block mt-4" %>
@@ -56,7 +56,7 @@
           <div class="col-6">
             <div class="input-group">
               <input type="text" class="form-control" id="keyword" placeholder="地図を検索">
-              <button id="search" class="btn btn-outline-success" type="button" >
+              <button id="search" class="btn" type="button" >
                 <i class="fas fa-search"></i>検索
               </button>
             </div>

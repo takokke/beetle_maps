@@ -20,7 +20,11 @@ a {
 }
 
 i {
-  color: #806E40;
+  color: $text-color;
+}
+
+#search {
+  border-color: $text-color;
 }
 
 footer {
