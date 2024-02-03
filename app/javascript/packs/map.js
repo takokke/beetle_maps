@@ -23,7 +23,6 @@ async function initMap() {
 
   // 地図の検索
 
-
   $("#search").on('click', function() {
     let place = $("#keyword").val();
     geocoder.geocode({
@@ -42,13 +41,14 @@ async function initMap() {
         }
       } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
         console.log(status);
-        // alert("見つかりません");
+        
       } else {
         console.log(status);
-        // alert("エラー発生");
+       
       }
     });
   });
+
   /*******************************************************
    投稿画面
    ******************************************************/
@@ -107,13 +107,13 @@ async function initMap() {
   /**********************************************************************
   関数の定義
   ********************************************************************/
-  function getClickLatLng(lat_lng, map) {
+  const getClickLatLng = (lat_lng, map) => {
     $("#lat-input").val(lat_lng.lat());
     $("#lng-input").val(lat_lng.lng());
   }
 
   // リバースジオコーディングで住所を取得
-  function getClickAddress(lat_lng) {
+  const getClickAddress = (lat_lng) => {
     let latlng = {
       lat: parseFloat(lat_lng.lat()),
       lng: parseFloat(lat_lng.lng()),
@@ -145,7 +145,7 @@ async function initMap() {
     }).catch((e) => window.alert("Geocoder failed due to: " + e));
   }
 
-  function toggleMarker(lat_lng, map) {
+  const toggleMarker = (lat_lng, map) => {
 
     // もし、直前に追加したマーカーが残っているなら、マップから隠す
     if (marker) {
@@ -161,7 +161,6 @@ async function initMap() {
     });
 
     // 座標の中心をずらす
-    // http://syncer.jp/google-maps-javascript-api-matome/map/method/panTo/
     map.panTo(lat_lng);
   }
 }

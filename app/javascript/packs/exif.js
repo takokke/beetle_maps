@@ -3,6 +3,7 @@ $(function() {
     $('#file-input').on('change', function() {
         var file_input = $('#file-input');
         var file = file_input[0].files[0];
+        console.log("写真")
 
         // EXIF.getDataでexif情報を解析
         EXIF.getData(file, function() {
