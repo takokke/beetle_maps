@@ -7,6 +7,7 @@
 // ライブラリの読み込み
 let map;
 
+
 async function initMap() {
   console.log("マップ生成開始")
   const { Map } = await google.maps.importLibrary("maps");
@@ -41,10 +42,10 @@ async function initMap() {
         }
       } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
         console.log(status);
-        
+
       } else {
         console.log(status);
-       
+
       }
     });
   });
@@ -67,9 +68,11 @@ async function initMap() {
   /********************************************************
    地図一覧画面
    ********************************************************/
-
-  if (location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/map") {
-    const response = await fetch("/posts.json").then((res) => res.json()).catch(error => console.error(error));
+  let patternMap = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+map/g
+  let patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g
+  if (patternMap.test(location.href)) {
+    let json_url = "/posts.json"
+    const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
     const items = response.data.items;
     items.forEach((item) => {
       const marker = new google.maps.Marker({
