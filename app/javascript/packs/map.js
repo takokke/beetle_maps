@@ -23,7 +23,6 @@ async function initMap() {
   let marker;
 
   // 地図の検索
-
   $("#search").on('click', function() {
     let place = $("#keyword").val();
     geocoder.geocode({
@@ -54,17 +53,35 @@ async function initMap() {
   /*******************************************************
    投稿詳細画面
    ********************************************************/
-   let patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g
-   // この画面はmarkerだけ
-   // location.hrefからposts/:idの:id部分を取り出す ・・・①
-   // `/posts/①`でfetch()を使う
+  const patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g;
+  if ( patternShow.test(location.href) ) {
+    // location.hrefからposts/:idの:id部分を取り出す。つまり末尾の文字を取り出す
+    const postId = location.href.substr(location.href.length - 1);
+
+    // show.json.jbuilderからデータを取得
+    let showJsonUrl = `/posts/${postId}.json`;
+    const response = await fetch(showJsonUrl).then((res) => res.json()).catch(error => console.error(error));
+    const item = response.data.item;
+
+    // 緯度経度を取得
+    const lat_lng = new google.maps.LatLng(item.latitude, item.longitude);
+
+    // 地図の中心をlat_lngに合わせる
+    map.panTo(lat_lng);
+
+    marker = new google.maps.Marker({
+      position: lat_lng,
+      map
+    });
+  }
+
 
 
   /*******************************************************
    新規投稿画面
    ******************************************************/
-  if (location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts/new"
-     || location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts" ) {
+  let patternNew = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/new/g
+  if ( patternNew.test(location.href) ) {
     // 地図上でクリックしたときのイベント
     map.addListener('click', function(e) {
       console.log("マップクリック")
