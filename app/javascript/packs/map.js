@@ -50,8 +50,18 @@ async function initMap() {
     });
   });
 
+
   /*******************************************************
-   投稿画面
+   投稿詳細画面
+   ********************************************************/
+   let patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g
+   // この画面はmarkerだけ
+   // location.hrefからposts/:idの:id部分を取り出す ・・・①
+   // `/posts/①`でfetch()を使う
+
+
+  /*******************************************************
+   新規投稿画面
    ******************************************************/
   if (location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts/new"
      || location.href == "https://50bdae72da8d40919c941cb6c4782fc2.vfs.cloud9.ap-northeast-1.amazonaws.com/posts" ) {
@@ -69,7 +79,6 @@ async function initMap() {
    地図一覧画面
    ********************************************************/
   let patternMap = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+map/g
-  let patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g
   if (patternMap.test(location.href)) {
     let json_url = "/posts.json"
     const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
