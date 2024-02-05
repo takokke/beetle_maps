@@ -1,0 +1,16 @@
+{
+  "name": "beetle-maps",
+  "description": "This is maps app",
+  "keywords": [],
+  "website": "",
+  "repository": "https://github.com/takokke/bookers2.git",
+  "env": {},
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}
