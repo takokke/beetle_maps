@@ -41,10 +41,10 @@ async function initMap() {
         }
       } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
         console.log(status);
-
+        alert("見つかりませんでした")
       } else {
         console.log(status);
-
+        alert("エラーが起きました")
       }
     });
   });
