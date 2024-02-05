@@ -1,32 +1,32 @@
-@use '~bootstrap/scss/bootstrap';
-@import 'breakpoints';
-@import 'map';
+// @use '~bootstrap/scss/bootstrap';
+// @import 'breakpoints';
+// @import 'map';
 
 
-$main-color: #806E40;
-$text-color: #534741;
+// $main-color: #806E40;
+// $text-color: #534741;
 
-body {
-  color: $text-color;
-}
+// body {
+//   color: $text-color;
+// }
 
-input[type="submit"] {
-  background-color: $main-color;
-  color: #fff;
-}
+// input[type="submit"] {
+//   background-color: $main-color;
+//   color: #fff;
+// }
 
-a {
-  color: $text-color;
-}
+// a {
+//   color: $text-color;
+// }
 
-i {
-  color: $text-color;
-}
+// i {
+//   color: $text-color;
+// }
 
-#search {
-  border-color: $text-color;
-}
+// #search {
+//   border-color: $text-color;
+// }
 
-footer {
-  background-color: #372F2B;
-}
+// footer {
+//   background-color: #372F2B;
+// }
