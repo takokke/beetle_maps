@@ -55,7 +55,9 @@ async function initMap() {
   const patternShow = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/\d+/g;
   if ( patternShow.test(location.href) ) {
     // location.hrefからposts/:idの:id部分を取り出す。つまり末尾の文字を取り出す
-    const postId = location.href.substr(location.href.length - 1);
+    // しかし、これだと一桁目の数字しか取り出せない
+    const postId = location.href.split("/").slice(-1)[0]
+    console.log(postId)
 
     // show.json.jbuilderからデータを取得
     let showJsonUrl = `/posts/${postId}.json`;
@@ -99,6 +101,7 @@ async function initMap() {
     let json_url = "/posts.json"
     const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
     const items = response.data.items;
+    console.log(items)
     items.forEach((item) => {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(item.latitude, item.longitude),
