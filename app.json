@@ -1,0 +1,16 @@
+{
+  "name": "beetle-map",
+  "description": "This is SNSapp",
+  "keywords": [],
+  "website": "",
+  "repository": "https://github.com/takokke/beetle_maps.git",
+  "env": {},
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}
