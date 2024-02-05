@@ -43,7 +43,6 @@ async function initMap() {
         console.log(status);
         alert("見つかりませんでした")
       } else {
-        console.log(status);
         alert("エラーが起きました")
       }
     });
@@ -80,7 +79,7 @@ async function initMap() {
   /*******************************************************
    新規投稿画面
    ******************************************************/
-  let patternNew = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/new/g
+  const patternNew = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+\/posts\/new/g
   if ( patternNew.test(location.href) ) {
     // 地図上でクリックしたときのイベント
     map.addListener('click', function(e) {
@@ -95,7 +94,7 @@ async function initMap() {
   /********************************************************
    地図一覧画面
    ********************************************************/
-  let patternMap = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+map/g
+  const patternMap = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+map/g
   if (patternMap.test(location.href)) {
     let json_url = "/posts.json"
     const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
