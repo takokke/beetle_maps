@@ -14,32 +14,45 @@
  *= require_self
  */
  
+//マップ型変数breakpointsを定義
+$breakpoints: (
+//キー:値
+ 'sm': 'screen and (max-width: 576px)',
+ 'md': 'screen and (max-width: 768px)',
+ 'lg': 'screen and (max-width: 992px)',
+ 'xl': 'screen and (max-width: 1200px)'
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: md) {
+//map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+
+@import 'header';
 @import 'maps';
- 
-$main-color: #806E40;
-$text-color: #534741;
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 body {
-  color: $text-color;
+  line-height: 1.5;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-input[type="submit"] {
-  background-color: $main-color;
-  color: #fff;
-}
 
 a {
-  color: $text-color;
+  text-decoration: none;
 }
 
-i {
-  color: $text-color;
-}
-
-#search {
-  border-color: $text-color;
-}
-
-footer {
-  background-color: #372F2B;
+li {
+  list-style: none;
 }
