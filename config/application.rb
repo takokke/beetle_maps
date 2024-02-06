@@ -12,6 +12,7 @@ module BeetleMaps
     config.load_defaults 6.1
     
     
+    
     if Rails.env.development? || Rails.env.test?
       Bundler.require(*Rails.groups)
       Dotenv::Railtie.load
