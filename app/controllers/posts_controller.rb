@@ -1,14 +1,7 @@
 class PostsController < ApplicationController
   before_action :is_matching_author, only: [:edit, :update, :destroy]
   def index
-    respond_to do |format|
-      format.html do
-        @posts = Post.page(params[:page])
-      end
-      format.json do
-        @posts = Post.all
-      end
-    end
+    @posts = Post.page(params[:page])
   end
 
   def show
