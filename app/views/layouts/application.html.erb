@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>カブちゃんマップ</title>
+    <title>Beetle Maps</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,7 +19,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/">カブちゃんマップ</a>
+          <a class="navbar-brand p-3" href="/">Beetle Maps</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,9 +31,6 @@
               </li>
               <li class="nav-item">
                 <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark',"data-turbolinks": false%>
-              </li>
-              <li class="nav-item">
-                <%= link_to '地図で見る', map_path, class: 'nav-link text-dark', "data-turbolinks": false%>
               </li>
               <li class="nav-item">
                 <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark'%>
