@@ -101,7 +101,6 @@ async function initMap() {
     let json_url = "/posts.json"
     const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
     const items = response.data.items;
-    console.log(items)
     items.forEach((item) => {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(item.latitude, item.longitude),
