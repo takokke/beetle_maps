@@ -9,12 +9,11 @@ let map;
 
 
 async function initMap() {
-  console.log("マップ生成開始")
   const { Map } = await google.maps.importLibrary("maps");
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: 34.6648863, lng: 133.916252 },
-    zoom: 15,
+    center: { lat: 35.6940306, lng: 139.763713 },
+    zoom: 10,
     mapTypeControl: true
   });
   // geocoderのコンストラクタ
@@ -57,7 +56,6 @@ async function initMap() {
     // location.hrefからposts/:idの:id部分を取り出す。つまり末尾の文字を取り出す
     // しかし、これだと一桁目の数字しか取り出せない
     const postId = location.href.split("/").slice(-1)[0]
-    console.log(postId)
 
     // show.json.jbuilderからデータを取得
     let showJsonUrl = `/posts/${postId}.json`;
@@ -70,10 +68,36 @@ async function initMap() {
     // 地図の中心をlat_lngに合わせる
     map.panTo(lat_lng);
 
-    marker = new google.maps.Marker({
-      position: lat_lng,
-      map
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(item.latitude, item.longitude),
+      map,
+      title: item.creature_name,
     });
+    const information = new google.maps.InfoWindow({
+      content: `
+        <div class="information container p-0">
+          <div class="mb-3">
+            <img class="thumbnail" src="${item.image}" style="width: 220px;" loading="lazy">
+          </div>
+          <div>
+            <h1 class="h4 font-weight-bold">${item.creature_name}</h1>
+            <p class="text-muted" style="width: 220px;">${item.address}</p>
+          </div>
+        </div>
+      `,
+      ariaLabel: item.creature_name,
+    });
+    information.open({
+      anchor: marker,
+      map,
+    });
+
+    marker.addListener("click", () => {
+      information.open({
+        anchor: marker,
+        map,
+      })
+    })
   }
 
 
