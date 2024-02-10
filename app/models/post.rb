@@ -18,7 +18,7 @@ class Post < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     # image.variant(resize_to_limit: [width, height]).processed
-    image.variant(gravity: :center, resize:"300x500^",crop:"#{width}x#{height}+0+0").processed
+    image.variant(gravity: :center, resize:"300x400^",crop:"#{width}x#{height}+0+0").processed
   end
 
   def favorited_by?(user)

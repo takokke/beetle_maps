@@ -1,46 +1,52 @@
 <div class="container">
-  <div id="map"></div>
-  <%= image_tag @post.get_image(300,300) %>
-  <p>生き物の名前：<%= @post.creature_name %></p>
-  <p>場所：<%= @post.address %></p>
-  <p>説明：<%= @post.caption %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= @post.user.name %></p>
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path(@post) %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorite_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-  <div>
-    <p>コメント件数:<%= @post.post_comments.count %></p>
-    <% @post.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-      <%= post_comment.user.name %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-      <% if post_comment.user == current_user %>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-      <% end %>
-    <% end %>
-  </div>
-  
-  <div>
-    <%= form_with model: [@post, @post_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
+  <div class="row shadow-lg mt-4 mb-3">
+    <div class="col-md-6">
+      <div id="map"></div>
+    </div>
+    <div class="col-md-6 mx-auto">
+        <%= image_tag @post.get_image(240,240) %>
+          <p>生き物の名前：<%= @post.creature_name %></p>
+          <p>場所：<%= @post.address %></p>
+          <p>説明：<%= @post.caption %></p>
+          <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
+          <p>ユーザーネーム：<%= @post.user.name %></p>
+          <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post) %>
+            <%= link_to "削除", post_path(@post), method: :delete %>
+          <% end %>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorite_path(@post), method: :delete do %>
+                ♥<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorite_path(@post), method: :post do %>
+                ♡<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+          <div>
+            <p>コメント件数:<%= @post.post_comments.count %></p>
+            <% @post.post_comments.each do |post_comment| %>
+              <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+              <%= post_comment.user.name %>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div>
+            <%= form_with model: [@post, @post_comment] do |f| %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+              <%= f.submit "送信する" %>
+            <% end %>
+          </div>
+        </div>
   </div>
 </div>
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
