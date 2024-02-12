@@ -4,6 +4,7 @@
   key: process.env.API_KEY
 });
 
+
 // ライブラリの読み込み
 let map;
 

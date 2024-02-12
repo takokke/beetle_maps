@@ -9,7 +9,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "4.6.2",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.2",
     "jquery": "^3.7.1",
     "jquery-jpostal-ja": "^2.14.40",
     "popper.js": "^1.16.1",
@@ -21,7 +21,6 @@
   "devDependencies": {
     "webpack-dev-server": "^3"
   },
- "engines": {
-   "node": "16.x"
- }
+  "engines": {
+    "node": "16.x"
 }
