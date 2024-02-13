@@ -93,6 +93,7 @@ async function initMap() {
       map,
     });
     
+    
     marker.addListener("click", () => {
       information.open({
         anchor: marker,
