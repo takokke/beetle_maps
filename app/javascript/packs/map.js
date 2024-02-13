@@ -8,8 +8,6 @@
 // ライブラリの読み込み
 let map;
 
-console.log("wwww")
-
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
@@ -73,6 +71,7 @@ async function initMap() {
       map,
       title: item.creature_name,
     });
+    map.setCenter(lat_lng);
     const information = new google.maps.InfoWindow({
       content: `
         <div class="information container p-0">

@@ -12,3 +12,18 @@
 2024-02-13 19:19:18.652 JST [1691] LOG:  background worker "logical replication launcher" (PID 1698) exited with exit code 1
 2024-02-13 19:19:18.653 JST [1693] LOG:  shutting down
 2024-02-13 19:19:18.680 JST [1691] LOG:  database system is shut down
+2024-02-13 21:04:31.042 JST [1806] LOG:  starting PostgreSQL 14.10 (Homebrew) on aarch64-apple-darwin23.0.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2024-02-13 21:04:31.044 JST [1806] LOG:  listening on IPv6 address "::1", port 5432
+2024-02-13 21:04:31.044 JST [1806] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-02-13 21:04:31.044 JST [1806] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-02-13 21:04:31.055 JST [1807] LOG:  database system was shut down at 2024-02-13 19:19:18 JST
+2024-02-13 21:04:31.060 JST [1806] LOG:  database system is ready to accept connections
+2024-02-13 21:07:19.397 JST [1937] ERROR:  database "beetle_maps_development" already exists
+2024-02-13 21:07:19.397 JST [1937] STATEMENT:  CREATE DATABASE "beetle_maps_development" ENCODING = 'unicode'
+2024-02-13 21:07:19.427 JST [1939] ERROR:  database "beetle_maps_test" already exists
+2024-02-13 21:07:19.427 JST [1939] STATEMENT:  CREATE DATABASE "beetle_maps_test" ENCODING = 'unicode'
+2024-02-13 21:16:38.197 JST [1806] LOG:  received fast shutdown request
+2024-02-13 21:16:38.197 JST [1806] LOG:  aborting any active transactions
+2024-02-13 21:16:38.198 JST [1806] LOG:  background worker "logical replication launcher" (PID 1813) exited with exit code 1
+2024-02-13 21:16:38.198 JST [1808] LOG:  shutting down
+2024-02-13 21:16:38.206 JST [1806] LOG:  database system is shut down
