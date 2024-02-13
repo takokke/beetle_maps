@@ -8,7 +8,6 @@
 // ライブラリの読み込み
 let map;
 
-
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
@@ -66,33 +65,34 @@ async function initMap() {
     // 緯度経度を取得
     const lat_lng = new google.maps.LatLng(item.latitude, item.longitude);
 
-    // 地図の中心をlat_lngに合わせる
-    map.panTo(lat_lng);
-
+    // マーカー生成
     const marker = new google.maps.Marker({
       position: new google.maps.LatLng(item.latitude, item.longitude),
       map,
       title: item.creature_name,
     });
+    map.setCenter(lat_lng);
     const information = new google.maps.InfoWindow({
       content: `
         <div class="information container p-0">
           <div class="mb-3">
-            <img class="thumbnail" src="${item.image}" style="width: 220px;" loading="lazy">
+            <img class="thumbnail" src="${item.image}" style="width: 200px;" loading="lazy">
           </div>
           <div>
             <h1 class="h4 font-weight-bold">${item.creature_name}</h1>
-            <p class="text-muted" style="width: 220px;">${item.address}</p>
+            <p class="text-muted" style="width: 200px;">${item.address}</p>
           </div>
         </div>
       `,
       ariaLabel: item.creature_name,
     });
+    
     information.open({
       anchor: marker,
       map,
     });
-
+    
+    
     marker.addListener("click", () => {
       information.open({
         anchor: marker,
@@ -116,48 +116,6 @@ async function initMap() {
       toggleMarker(e.latLng, map);
     });
   }
-
-
-  /********************************************************
-   地図一覧画面
-   ********************************************************/
-  // const patternMap = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+map/g
-  // if (patternMap.test(location.href)) {
-  //   let json_url = "/posts.json"
-  //   const response = await fetch(json_url).then((res) => res.json()).catch(error => console.error(error));
-  //   const items = response.data.items;
-  //   items.forEach((item) => {
-  //     const marker = new google.maps.Marker({
-  //       position: new google.maps.LatLng(item.latitude, item.longitude),
-  //       map,
-  //       title: item.creature_name,
-  //     });
-  //     const information = new google.maps.InfoWindow({
-  //       content: `
-  //         <div class="information container p-0">
-  //           <div class="mb-3 d-flex align-items-center">
-  //             <img class="rounded-circle mr-2" src="${item.user.image}" width="40" height="40"><p class="lead m-0 font-weight-bold">${item.user.name}</p>
-  //           </div>
-  //           <div class="mb-3">
-  //             <img class="thumbnail" src="${item.image}" width="220" loading="lazy">
-  //           </div>
-  //           <div>
-  //             <h1 class="h4 font-weight-bold">${item.creature_name}</h1>
-  //             <p class="text-muted" style="width: 220px;">${item.address}</p>
-  //             <p class="lead" style="width: 220px;">${item.caption}</p>
-  //           </div>
-  //         </div>
-  //       `,
-  //       ariaLabel: item.creature_name,
-  //     });
-  //     marker.addListener("click", () => {
-  //       information.open({
-  //         anchor: marker,
-  //         map,
-  //       })
-  //     })
-  //   });
-  // }
 
   /**********************************************************************
   関数の定義

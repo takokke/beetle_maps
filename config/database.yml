@@ -8,6 +8,7 @@ default: &default
   password: password
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+
 development:
   <<: *default
   database: beetle_maps_development
