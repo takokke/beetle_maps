@@ -1,0 +1,14 @@
+2024-02-13 18:20:40.070 JST [1691] LOG:  starting PostgreSQL 14.10 (Homebrew) on aarch64-apple-darwin23.0.0, compiled by Apple clang version 15.0.0 (clang-1500.0.40.1), 64-bit
+2024-02-13 18:20:40.072 JST [1691] LOG:  listening on IPv6 address "::1", port 5432
+2024-02-13 18:20:40.072 JST [1691] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-02-13 18:20:40.072 JST [1691] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-02-13 18:20:40.083 JST [1692] LOG:  database system was shut down at 2024-02-12 12:01:43 JST
+2024-02-13 18:20:40.087 JST [1691] LOG:  database system is ready to accept connections
+2024-02-13 18:22:25.640 JST [1813] FATAL:  role "postgres" does not exist
+2024-02-13 18:22:27.131 JST [1817] FATAL:  role "postgres" does not exist
+2024-02-13 18:22:29.161 JST [1818] FATAL:  role "postgres" does not exist
+2024-02-13 18:22:40.804 JST [1847] FATAL:  role "postgres" does not exist
+2024-02-13 19:19:18.647 JST [1691] LOG:  received smart shutdown request
+2024-02-13 19:19:18.652 JST [1691] LOG:  background worker "logical replication launcher" (PID 1698) exited with exit code 1
+2024-02-13 19:19:18.653 JST [1693] LOG:  shutting down
+2024-02-13 19:19:18.680 JST [1691] LOG:  database system is shut down

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="shadow-lg mt-4 mb-3">
     <div id="map"></div>
-
+    <%= image_tag @post.get_image(200, 200)%>
     <p>生き物の名前：<%= @post.creature_name %></p>
     <p>場所：<%= @post.address %></p>
     <p>説明：<%= @post.caption %></p>
