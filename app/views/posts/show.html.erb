@@ -1,33 +1,44 @@
 <div class="container">
-  <div class="shadow-lg mt-4 mb-3">
-    <div id="map"></div>
-    <p>生き物の名前：<%= @post.creature_name %></p>
-    <p>場所：<%= @post.address %></p>
-    <p>説明：<%= @post.caption %></p>
-    <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
-    <p>ユーザーネーム：<%= @post.user.name %></p>
-    <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-    <% if @post.user == current_user %>
-      <%= link_to "編集", edit_post_path(@post) %>
-      <%= link_to "削除", post_path(@post), method: :delete %>
-    <% end %>
-    <div id="favorite_btn_<%= @post.id %>">
-      <%= render 'favorites/favorite-btn', post: @post %>
-    </div>
-      <p>コメント件数:<%= @post.post_comments.count %></p>
-      <% @post.post_comments.each do |post_comment| %>
-        <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-        <%= post_comment.user.name %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-        <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-        <% end %>
+  <div class="row">
+    <div class="shadow-lg mx-auto my-4 px-0 col-11 col-md-6">
+      <div id="map"></div>
+      <div class="row mt-3 mx-auto">
+        <div class="col-3 text-center">
+          <%= image_tag @post.user.get_profile_image(60,60), class:'rounded-circle'%>
+          <p><i class="fas fa-user"></i><%= @post.user.name %></p>
+        </div>
+        <div class="col-8 offset-1">
+          <p>
+            <strong><i class="fa-solid fa-seedling"></i><span> <%= @post.creature_name %></span></strong>
+          </p>
+          <span><%= @post.created_at.strftime('%Y/%m/%d') %> ｜ </span>
+          <span><i class="fa-solid fa-comment" aria-hidden="true"></i> <%= @post.post_comments.count %> ｜ </span>
+          <span id="favorite_btn_<%= @post.id %>">
+            <%= render 'favorites/favorite-btn', post: @post %>
+          </span>
+        </div>
+      </div>
+      <p>場所：<%= @post.address %></p>
+      <p>説明：<%= @post.caption %></p>
+      <% if @post.user == current_user %>
+        <%= link_to "編集", edit_post_path(@post) %>
+        <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "投稿を削除してもよろしいですか？" }%>
       <% end %>
-      <div>
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
+        <p>コメント件数:<%= @post.post_comments.count %></p>
+        <% @post.post_comments.each do |post_comment| %>
+          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+          <%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete%>
+          <% end %>
         <% end %>
+        <div>
+          <%= form_with model: [@post, @post_comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

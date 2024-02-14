@@ -1,6 +1,6 @@
 @use '~bootstrap/scss/bootstrap';
-@import 'breakpoints';
-@import 'map';
+@use 'breakpoints';
+@use 'map';
 
 
 $main-color: #806E40;
