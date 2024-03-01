@@ -55,7 +55,7 @@ async function initMap() {
   if ( patternShow.test(location.href) ) {
     // location.hrefからposts/:idの:id部分を取り出す。つまり末尾の文字を取り出す
     // しかし、これだと一桁目の数字しか取り出せない
-    let postId = location.href.split("/").slice(-1)[0]
+    const postId = location.href.split("/").slice(-1)[0]
     
     // show.json.jbuilderからデータを取得
     let showJsonUrl = `/posts/${postId}.json`;
