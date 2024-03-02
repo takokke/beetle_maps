@@ -75,6 +75,9 @@ async function initMap() {
     const information = new google.maps.InfoWindow({
       content: `
         <div class="information container p-0">
+          <p style="margin-bottom: 0;">
+          <span aria-hidden="true"><i class="fa-solid fa-seedling"></i></span><strong style="font-size: 14px;">${item.creature_name}</strong>
+          </p>
           <div>
             <img class="thumbnail" src="${item.image}" style="width: 140px;" loading="lazy">
           </div>

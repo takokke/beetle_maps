@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th>ユーザー</th>
+        <th>コメント</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% post.post_comments.each do |post_comment| %>
+        <tr>
+            <td>
+            <%= image_tag post_comment.user.get_profile_image(45,45), class:'rounded-circle'%>
+            <p class="m-0" style="font-size: 12px;"><%= post_comment.created_at.strftime('%Y-%m-%d') %></p>
+            </td>
+            <td><%= post_comment.comment %></td>
+            <td>
+            <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-outline-danger", data: { confirm: "コメントを削除してもよろしいですか？" }, remote: true %>
+            <% end %>
+            </td>          
+        </tr>
+    <% end %>
+    </tbody>
+</table>
