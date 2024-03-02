@@ -1,0 +1,3 @@
+$("#comment_count").html("<%= escape_javascript(render partial: 'post_comments/count', locals: {post: @post} )%>");
+$("#comment_index").html("<%= escape_javascript(render partial: 'post_comments/index', locals: {post: @post} ) %>");
+$("#comment_textarea").val("");
