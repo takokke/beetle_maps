@@ -13,7 +13,9 @@
             <%= image_tag post_comment.user.get_profile_image(45,45), class:'rounded-circle'%>
             <p class="m-0" style="font-size: 12px;"><%= post_comment.created_at.strftime('%Y-%m-%d') %></p>
             </td>
-            <td><%= post_comment.comment %></td>
+            <td style="word-break:break-word">
+                <%= post_comment.comment %>
+            </td>
             <td>
             <% if post_comment.user == current_user %>
             <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-outline-danger", data: { confirm: "コメントを削除してもよろしいですか？" }, remote: true %>
