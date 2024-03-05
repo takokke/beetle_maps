@@ -1,11 +1,11 @@
 <div class="container py-3">
   <h4 style="color: #806E40; border-bottom: 2px solid #806E40;" >みんなの投稿</h4>
-  <div class="d-flex justify-content-center justify-content-md-around py-4 px-md-3 flex-wrap" style="background-color: #F6F4EA;">
+  <div class="py-4 px-md-3 d-flex align-items-center flex-column-reverse">
     <% @posts.each do |post| %>
-      <div>
+      <div class="mb-5">
         <%= link_to post_path(post.id) do %>
-          <%= image_tag post.get_image(240,240) %>
-          <h5><%= post.creature_name %></h5>
+          <h5><i class="fa-solid fa-seedling" aria-hidden="true"></i><%= post.creature_name %></h5>
+          <%= image_tag post.get_image(400,400) %>
         <% end %>
       </div>
     <% end %>
