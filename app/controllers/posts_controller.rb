@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :is_matching_author, only: [:edit, :update, :destroy]
+
   def index
     @posts = Post.page(params[:page])
   end
@@ -24,7 +25,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:notice] = "You have created post successfully."
+      flash[:notice] = "投稿が完了しました"
       redirect_to posts_path
     else
       render :new
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "You have updated post successfully."
+      flash[:notice] = "編集が完了しました"
       redirect_to post_path(@post)
     else
       render :edit
@@ -57,6 +58,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:creature_name, :caption, :image, :address, :latitude, :longitude, :discover_date)
   end
 
+  # 投稿主とログイン中のユーザーが一致しているか調べるメソッド
   def is_matching_author
     author = Post.find(params[:id]).user
     unless author == current_user
