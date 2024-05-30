@@ -4,8 +4,13 @@
     <% @posts.each do |post| %>
       <div class="mb-5">
         <%= link_to post_path(post.id) do %>
-          <h5><i class="fa-solid fa-seedling" aria-hidden="true"></i><%= post.creature_name %></h5>
-          <%= image_tag post.get_image(400,400) %>
+          <div class="card" style="width: 18rem;">
+            <%= image_tag post.get_image(400,400), class:"bd-placeholder-img card-img-top", width:"100%" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.creature_name %></h5>
+              <p class="card-text"><%= post.address %></p>
+            </div>
+          </div>
         <% end %>
       </div>
     <% end %>
