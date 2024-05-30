@@ -22,3 +22,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Docker導入
+起動
+```
+docker compose up
+```
+停止
+```
+docker compose down
+```

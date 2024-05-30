@@ -1,4 +1,5 @@
 FROM ruby:3.1.2
+FROM ruby:3.2.2
 
 # Node.jsをインストール
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
