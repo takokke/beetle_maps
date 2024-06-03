@@ -1,27 +1,6 @@
-# README
+# Beetle Maps
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+「Beetle Maps」はカブトムシやクワガタを見つけた場所をみんなに共有するアプリ
 
 ## Docker導入
 起動
@@ -32,3 +11,14 @@ docker compose up
 ```
 docker compose down
 ```
+コンテナに入り、bashを起動
+```
+docker compose run web bash
+```
+
+## 変更
+### 2024/05/30 RubyとRailのバージョンアップ
+- Ruby 3.1.2 -> 3.2.2
+- Rails 6.x -> 7.x
+
+に変更
